@@ -1,0 +1,32 @@
+.row1
+{
+    width:400px;
+    height:100px;
+    margin-left: 375px;
+   background-color: rgb(248, 211, 179);
+}
+.container{
+    margin-top: 150px;
+}
+.box11,.box12,.box13,.box21,.box22,.box23,.box31,.box32,.box33{
+    text-align: center;
+    padding-top: 40px;
+    font-size: large;
+    padding: 0 0 0 0 ;
+}
+.box11:hover,.box12:hover,.box13:hover,.box21:hover,.box22:hover,.box23:hover,.box31:hover,.box32:hover,.box33:hover{
+    background-color: rgb(248, 211, 179);
+    -webkit-box-shadow: 6px 2px 22px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 2px 22px -6px rgba(0,0,0,0.75);
+    box-shadow: 6px 2px 22px -6px rgba(0,0,0,0.75); 
+}
+body{
+    background-color: peachpuff
+    ;}
+    .b1,.b2,.b3,.b4,.b5,.b6,.b7,.b8,.b9{
+        width: 100%;
+        height:100%;
+   background-color: rgb(248, 211, 179);
+   border-color: peachpuff ;
+        box-align: center;
+    }
