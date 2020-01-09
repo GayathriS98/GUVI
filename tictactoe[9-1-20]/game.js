@@ -2,9 +2,9 @@ var players = /** @class */ (function () {
     function players() {
         this.turns = 1;
         this.count = 1;
+        this.win = 0;
     }
     players.prototype.play = function () {
-        console.log(this.turns);
         if (this.turns <= 9) {
             if (this.count % 2 == 0) {
                 this.turns++;
@@ -37,10 +37,10 @@ var b8 = document.querySelector(".b8");
 var b9 = document.querySelector(".b9");
 function f11() {
     if (player1.count % 2 == 0) {
-        x.innerHTML = "Player 2 is playing....";
+        x.innerHTML = "Player 1 's turn.....";
     }
     else {
-        x.innerHTML = "Player 1 is playing....";
+        x.innerHTML = "Player 2 's turn.....";
     }
     var ans = player1.play();
     b1.innerHTML = "" + ans;
@@ -55,10 +55,10 @@ function f11() {
 }
 function f12() {
     if (player1.count % 2 == 0) {
-        x.innerHTML = "Player 2 is playing....";
+        x.innerHTML = "Player 1 's turn.....";
     }
     else {
-        x.innerHTML = "Player 1 is playing....";
+        x.innerHTML = "Player 2 's turn.....";
     }
     var ans = player1.play();
     b2.innerHTML = "" + ans;
@@ -66,18 +66,17 @@ function f12() {
     if (ans == "X") {
         check_array[0][1] = 1;
     }
-    else {
+    else if (ans == "O") {
         check_array[0][1] = 0;
     }
     check(check_array);
-    //document.getElementsByClassName("b2").disabled=true;
 }
 function f13() {
     if (player1.count % 2 == 0) {
-        x.innerHTML = "Player 2 is playing....";
+        x.innerHTML = "Player 1 's turn.....";
     }
     else {
-        x.innerHTML = "Player 1 is playing....";
+        x.innerHTML = "Player 2 's turn.....";
     }
     var ans = player1.play();
     b3.innerHTML = "" + ans;
@@ -85,18 +84,17 @@ function f13() {
     if (ans == "X") {
         check_array[0][2] = 1;
     }
-    else {
+    else if (ans == "O") {
         check_array[0][2] = 0;
     }
     check(check_array);
-    //document.getElementsByClassName("b3").disabled=true;
 }
 function f21() {
     if (player1.count % 2 == 0) {
-        x.innerHTML = "Player 2 is playing....";
+        x.innerHTML = "Player 1 's turn.....";
     }
     else {
-        x.innerHTML = "Player 1 is playing....";
+        x.innerHTML = "Player 2 's turn.....";
     }
     var ans = player1.play();
     b4.innerHTML = "" + ans;
@@ -104,18 +102,17 @@ function f21() {
     if (ans == "X") {
         check_array[1][0] = 1;
     }
-    else {
+    else if (ans == "O") {
         check_array[1][0] = 0;
     }
     check(check_array);
-    //document.getElementsByClassName("b4").disabled=true;
 }
 function f22() {
     if (player1.count % 2 == 0) {
-        x.innerHTML = "Player 2 is playing....";
+        x.innerHTML = "Player 1 's turn.....";
     }
     else {
-        x.innerHTML = "Player 1 is playing....";
+        x.innerHTML = "Player 2 's turn.....";
     }
     var ans = player1.play();
     b5.innerHTML = "" + ans;
@@ -123,18 +120,17 @@ function f22() {
     if (ans == "X") {
         check_array[1][1] = 1;
     }
-    else {
+    else if (ans == "O") {
         check_array[1][1] = 0;
     }
     check(check_array);
-    //document.getElementsByClassName("b5").disabled=true;
 }
 function f23() {
     if (player1.count % 2 == 0) {
-        x.innerHTML = "Player 2 is playing....";
+        x.innerHTML = "Player 1 's turn.....";
     }
     else {
-        x.innerHTML = "Player 1 is playing....";
+        x.innerHTML = "Player 2 's turn.....";
     }
     var ans = player1.play();
     b6.innerHTML = "" + ans;
@@ -142,17 +138,17 @@ function f23() {
     if (ans == "X") {
         check_array[1][2] = 1;
     }
-    else {
+    else if (ans == "O") {
         check_array[1][2] = 0;
     }
     check(check_array);
 }
 function f31() {
     if (player1.count % 2 == 0) {
-        x.innerHTML = "Player 2 is playing....";
+        x.innerHTML = "Player 1 's turn.....";
     }
     else {
-        x.innerHTML = "Player 1 is playing....";
+        x.innerHTML = "Player 2 's turn.....";
     }
     var ans = player1.play();
     b7.innerHTML = "" + ans;
@@ -160,17 +156,17 @@ function f31() {
     if (ans == "X") {
         check_array[2][0] = 1;
     }
-    else {
+    else if (ans == "O") {
         check_array[2][0] = 0;
     }
     check(check_array);
 }
 function f32() {
     if (player1.count % 2 == 0) {
-        x.innerHTML = "Player 2 is playing....";
+        x.innerHTML = "Player 1 's turn.....";
     }
     else {
-        x.innerHTML = "Player 1 is playing....";
+        x.innerHTML = "Player 2 's turn.....";
     }
     var ans = player1.play();
     b8.innerHTML = "" + ans;
@@ -178,17 +174,17 @@ function f32() {
     if (ans == "X") {
         check_array[2][1] = 1;
     }
-    else {
+    else if (ans == "O") {
         check_array[2][1] = 0;
     }
     check(check_array);
 }
 function f33() {
     if (player1.count % 2 == 0) {
-        x.innerHTML = "Player 2 is playing....";
+        x.innerHTML = "Player 1 's turn.....";
     }
     else {
-        x.innerHTML = "Player 1 is playing....";
+        x.innerHTML = "Player 2 's turn.....";
     }
     var ans = player1.play();
     b9.innerHTML = "" + ans;
@@ -196,53 +192,66 @@ function f33() {
     if (ans == "X") {
         check_array[2][2] = 1;
     }
-    else {
+    else if (ans == "O") {
         check_array[2][2] = 0;
     }
     check(check_array);
-    //document.getElementsByClassName("b9").disabled=true;
 }
 function check(check_array) {
-    if (check_array[0][0] == check_array[0][1] && check_array[0][1] == check_array[0][2] || check_array[0][0] == check_array[1][0] && check_array[0][0] == check_array[2][0]) {
+    if ((check_array[0][0] == check_array[0][1] && check_array[0][1] == check_array[0][2]) || (check_array[0][0] == check_array[1][0] && check_array[0][0] == check_array[2][0])) {
         var temp = check_array[0][0];
         if (temp == 1) {
             x.innerHTML = "PLAYER 1 WINS";
+            player1.win = 1;
+            $(':button').prop('disabled', true);
         }
-        else {
+        else if (temp == 0) {
             x.innerHTML = "PLAYER 2 WINS";
+            player1.win = 1;
+            $(':button').prop('disabled', true);
         }
     }
-    // else if(check_array[1][0]==check_array[1][1] && check_array[1][1]==check_array[1][2] || check_array[0][1]==check_array[1][1] && check_array[1][1]==check_array[2][1])
-    // {
-    //     let temp=check_array[1][1];
-    //     if(temp==1)
-    //     {
-    //         x.innerHTML="PLAYER 1 WINS";
-    //     }
-    //     else{
-    //         x.innerHTML="PLAYER 2 WINS";
-    //     }
-    // }
-    // else if(check_array[2][0]==check_array[2][2] && check_array[2][2]==check_array[2][1] || check_array[0][2]==check_array[2][2] && check_array[2][2]==check_array[1][2])
-    // {
-    //     let temp=check_array[0][0];
-    //     if(temp==1)
-    //     {
-    //         x.innerHTML="PLAYER 1 WINS";
-    //     }
-    //     else{
-    //         x.innerHTML="PLAYER 2 WINS";
-    //     }
-    // }
-    // else if(check_array[0][0]==check_array[1][1] && check_array[1][1]==check_array[2][2] || check_array[0][2]==check_array[1][1] && check_array[1][1]==check_array[2][0])
-    // {
-    //     let temp=check_array[0][0];
-    //     if(temp==1)
-    //     {
-    //         x.innerHTML="PLAYER 1 WINS";
-    //     }
-    //     else{
-    //         x.innerHTML="PLAYER 2 WINS";
-    //     }
-    // }
+    else if (check_array[1][0] == check_array[1][1] && check_array[1][1] == check_array[1][2] || check_array[0][1] == check_array[1][1] && check_array[1][1] == check_array[2][1]) {
+        var temp = check_array[1][1];
+        if (temp == 1) {
+            x.innerHTML = "PLAYER 1 WINS";
+            player1.win = 1;
+            $(':button').prop('disabled', true);
+        }
+        else if (temp == 0) {
+            x.innerHTML = "PLAYER 2 WINS";
+            player1.win = 1;
+            $(':button').prop('disabled', true);
+        }
+    }
+    else if (check_array[2][0] == check_array[2][2] && check_array[2][2] == check_array[2][1] || check_array[0][2] == check_array[2][2] && check_array[2][2] == check_array[1][2]) {
+        var temp = check_array[2][2];
+        if (temp == 1) {
+            x.innerHTML = "PLAYER 1 WINS";
+            player1.win = 1;
+            $(':button').prop('disabled', true);
+        }
+        else if (temp == 0) {
+            x.innerHTML = "PLAYER 2 WINS";
+            player1.win = 1;
+            $(':button').prop('disabled', true);
+        }
+    }
+    else if (check_array[0][0] == check_array[1][1] && check_array[1][1] == check_array[2][2] || check_array[0][2] == check_array[1][1] && check_array[1][1] == check_array[2][0]) {
+        player1.win = 1;
+        var temp = check_array[1][1];
+        if (temp == 1) {
+            x.innerHTML = "PLAYER 1 WINS";
+            player1.win = 1;
+            $(':button').prop('disabled', true);
+        }
+        else if (temp == 0) {
+            x.innerHTML = "PLAYER 2 WINS";
+            player1.win = 1;
+            $(':button').prop('disabled', true);
+        }
+    }
+    else if (player1.count == 10 && player1.win == 0) {
+        x.innerHTML = "Match is drawn";
+    }
 }
