@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pagenation</title>
+  
 </head>
 
 <body>
@@ -517,6 +518,63 @@
     let table_bar = document.createElement('div');
     table_bar.setAttribute('style', 'display: flex;justify-content: center;padding:50px;height:400px');
     document.body.appendChild(table_bar);
+
+
+    let table = document.createElement('table');
+        table.cellPadding = '25px';
+        let row = document.createElement('tr');
+        let tab_head1 = document.createElement('th');
+        tab_head1.setAttribute('style', 'border: 1px solid #ddd;padding: 15px;background-color:black;color:white');
+        tab_head1.innerHTML = 'ID';
+        row.appendChild(tab_head1);
+        let tab_head2 = document.createElement('th');
+        tab_head2.setAttribute('style', 'border: 1px solid #ddd;padding: 15px;background-color:black;color:white');
+        tab_head2.innerHTML = 'Name';
+        row.appendChild(tab_head2);
+        let tab_head3 = document.createElement('th');
+        tab_head3.setAttribute('style', 'border: 1px solid #ddd;padding: 8px;background-color:black;color:white');
+        tab_head3.innerHTML = 'Email';
+        row.appendChild(tab_head3);
+        table.appendChild(row);
+        for (let c=0; c <5; c++) {
+  
+          if (c % 2 !== 0) {
+            let row = document.createElement('tr');
+            let tab_data1 = document.createElement('td');
+            tab_data1.setAttribute('style', 'border: 1px solid #ddd;padding: 15px');
+            tab_data1.innerHTML = data[c].id;
+            row.appendChild(tab_data1);
+            let tab_data2 = document.createElement('td');
+            tab_data2.setAttribute('style', 'border: 1px solid #ddd;padding: 15px');
+            tab_data2.innerHTML = data[c].name;
+            row.appendChild(tab_data2);
+            let tab_data3 = document.createElement('td');
+            tab_data3.setAttribute('style', 'border: 1px solid #ddd;padding: 15px');
+            tab_data3.innerHTML = data[c].email;
+            row.appendChild(tab_data3);
+            table.appendChild(row);
+            table_bar.appendChild(table);
+          } else {
+            let row = document.createElement('tr');
+            let tab_data1 = document.createElement('td');
+            tab_data1.setAttribute('style', 'border: 1px solid #ddd;padding: 15px;background-color:#f2f2f2');
+            tab_data1.innerHTML = data[c].id;
+            row.appendChild(tab_data1);
+            let tab_data2 = document.createElement('td');
+            tab_data2.setAttribute('style', 'border: 1px solid #ddd;padding: 15px;background-color:#f2f2f2');
+            tab_data2.innerHTML = data[c].name;
+            row.appendChild(tab_data2);
+            let tab_data3 = document.createElement('td');
+            tab_data3.setAttribute('style', 'border: 1px solid #ddd;padding: 15px;background-color:#f2f2f2');
+            tab_data3.innerHTML = data[c].email;
+            row.appendChild(tab_data3);
+            table.appendChild(row);
+            table_bar.appendChild(table);
+          }
+        }
+
+
+
     let page_bar = document.createElement('div');
     //page_bar.style.display='flex';
     page_bar.setAttribute('style', 'display:flex;justify-content:center');
