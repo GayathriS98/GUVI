@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      align-content: center;
+    }
+
+    #b1 {
+      height: 30px;
+      width: 30px;
+      align-content: center;
+      margin: 10px;
+    }
+
+    #button {
+      display: flex;
+      justify-content: center;
+    }
+
+    #load {
+
+      justify-content: center;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="button">
+
+  </div>
+  <h3 id="load"></h3>
+  <div id="tab">
+    <table id="table" align="center">
+      <thead id="th"></thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+  <script>
+    let cnt = -1;
+    let ar = new Array(2);
+    for (let i = 0; i < 2; i++) {
+      ar[i] = new Array(12);
+    }
+    for (let i = 0; i < 12; i++) {
+      ar[0][i] = 0;
+    }
+    let api;
+    for (let i = 0; i < 8; i++) {
+      let button = document.createElement('button');
+      button.innerHTML = i + 1;
+      button.setAttribute('id', 'b1');
+      button.addEventListener('click', () => {
+        let check = -1;
+        for (let c = 0; c < 8; c++) {
+          if (ar[0][c] == i + 1) {
+            check = c;
+          }
+        }
+        if (check !== -1) {
+          document.getElementById("load").style.display = "none";
+          document.getElementById('th').innerHTML = "";
+          document.getElementById('tb').innerHTML = "";
+          let tr = document.createElement('tr');
+          tr.id = "row";
+          document.getElementById("th").appendChild(tr);
+          for (var key in ar[1][check][1]) {
+            let th = document.createElement('th');
+            th.innerHTML = key;
+            tr.appendChild(th);
+          }
+          ar[1][check].forEach(element => {
+            let tr = document.createElement('tr');
+            tr.id = "row";
+            document.getElementById("tb").appendChild(tr);
+
+            for (var key in element) {
+              let td = document.createElement('td');
+              td.innerHTML = element[key];
+              tr.appendChild(td);
+            }
+          });
+        }
+        if(check==-1){
+          cnt++;
+          ar[0][cnt] = i + 1;
+          document.getElementById("table").style.border="0px";
+          document.getElementById('th').innerHTML = "";
+          document.getElementById('tb').innerHTML = "";
+          document.getElementById("load").style.display = "flex";
+          document.getElementById("load").innerHTML = ".....Loading....."
+          api = `https://5cdd0a92b22718001417c19d.mockapi.io/api/products?page=${i+1}&limit=7`;
+          let data = fetch(api);
+          data.then((d) => {
+            return d.json();
+          }).then((dat) => {
+            ar[1][cnt] = dat;
+            document.getElementById("load").style.display = "none";
+            let tr = document.createElement('tr');
+            tr.id = "row";
+            document.getElementById("th").appendChild(tr);
+            for (var key in dat[0]) {
+              let th = document.createElement('th');
+              th.innerHTML = key;
+              tr.appendChild(th);
+            }
+
+            document.getElementById("table").style.border="1px solid black";
+            dat.forEach(element => {
+              let tr = document.createElement('tr');
+              tr.id = "row";
+              document.getElementById("tb").appendChild(tr);
+              for (var key in element) {
+                let td = document.createElement('td');
+                td.innerHTML = element[key];
+                tr.appendChild(td);
+              }
+            });
+          })
+        }
+      });
+
+      document.getElementById("button").appendChild(button);
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            align-content: center;
+        }
+        
+        #b1{
+            height:30px;
+            width:30px;
+            align-content: center;
+            margin:10px;
+        }
+        #button{
+            display: flex;
+            justify-content: center;
+        }
+        #div{
+            font-size: large;
+            font-weight: 400;
+        }
+        #load{
+            display: flex;
+            justify-content: center;
+        }
+       
+    </style>
+
+</head>
+<body>
+    <div id="button">
+
+    </div>
+    <div id="load"></div>
+    <div id="tab">
+        
+    <table id="table" align="center">
+        <thead id="th"></thead>
+        <tbody id="tb"></tbody>
+    </table>
+    </div>
+    <script>
+        let api;
+        for(let i=0;i<8;i++)
+        {
+            let button=document.createElement('button');
+            button.innerHTML=i+1;
+            button.setAttribute('id','b1');
+            button.addEventListener('click',()=>{
+                document.getElementById('th').innerHTML="";
+             document.getElementById('tb').innerHTML="";
+                let load=document.createElement('div');
+                load.id="div"+i;
+                load.innerHTML="LOADING....."
+                document.getElementById("load").appendChild(load);
+                console.log(i+1);
+                api=`https://5cdd0a92b22718001417c19d.mockapi.io/api/products?page=${i+1}&limit=7`;
+
+         let data=fetch(api);
+         data.then((d)=>{
+             return d.json();
+         }).then((dat)=>{
+             document.getElementById("load").removeChild(load);
+             console.log(dat);
+            let tr=document.createElement('tr');
+            tr.id="row";
+            document.getElementById("th").appendChild(tr);
+            for(var key in dat[0]){
+                let th=document.createElement('th');
+                th.innerHTML=key;
+                tr.appendChild(th);
+            } 
+
+            dat.forEach(element => {
+                let tr=document.createElement('tr');
+                tr.id="row";
+                document.getElementById("tb").appendChild(tr);
+
+                for(var key in element){
+                    let td=document.createElement('td');
+                td.innerHTML=element[key];
+                tr.appendChild(td);
+                }
+            });           
+         })
+        
+
+
+            });
+            document.getElementById("button").appendChild(button);
+        }
+
+        
+        
+    </script>
+   
+</body>
+</html>
