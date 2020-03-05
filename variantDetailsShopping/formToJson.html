@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>task</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .div2{
+            padding-left: 27px;
+        }
+       .b1{
+           height:40px;
+           width: 150px;
+       }
+       .horLine{
+           width: 1100px;
+           margin-left: 25px;
+       }
+       .sub{
+           height:40px;
+           width:100px;
+       }
+       .innerdiv{
+           display: flex;
+       }
+       #div_2{
+           height: 100px;
+       }
+       #div_row{
+           padding-left: 40px;
+           padding-top: 20px;
+           display: flex;
+       }
+        #div_col{
+           height: 40px;
+           width: 190px;
+           border: 1px solid black;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+       } 
+       .cost_col{          
+           left: 25px;
+       }
+       .upd{
+           
+    margin-top: 30px;
+    /* padding-left: 40px; */
+    margin-left: 30px;
+
+       }
+    </style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    
+    <script>
+          let cnt=0;
+          let key=[];
+          let val=[];
+          let varients=[];
+          let varient_details=[];
+          let fin=[];
+            //creating a div1
+            let div1=document.createElement('div');
+            div1.setAttribute('style','padding:25px;margin-left:20px');
+            document.body.appendChild(div1);
+            
+            // inserting a button to add new variant inside div1
+            let new_var_button=document.createElement('button');
+            new_var_button.setAttribute('class','btn btn-outline-primary b1');
+            new_var_button.setAttribute('onclick',"createVariant()");
+            new_var_button.innerHTML="Add Variant";
+            div1.appendChild(new_var_button);
+
+            let div2=document.createElement('div');
+            div2.setAttribute('class','div2');
+            document.body.appendChild(div2);
+
+            let form=document.createElement('form');
+            form.setAttribute('onsubmit',"createarray()");
+            div2.appendChild(form);
+
+
+            let outerdiv=document.createElement('div');
+            outerdiv.setAttribute('class','outdiv');
+            form.appendChild(outerdiv);
+
+          
+            function createVariant(){
+
+                let hor_line=document.createElement('hr');
+                hor_line.setAttribute('class','horLine');
+
+                let innerdiv=document.createElement('div');
+                innerdiv.setAttribute('class','innerdiv');
+                
+             let div=document.createElement('div');
+             div.setAttribute('class','col-2');
+              let ip=document.createElement('input');
+              ip.setAttribute('type','text');
+              ip.setAttribute('class','form-control');
+              ip.setAttribute('placeholder','key');
+             
+
+             let div_var=document.createElement('div');
+             div_var.setAttribute('class','col-7');
+             let ip1=document.createElement('input');
+              ip1.setAttribute('type','text');
+              ip1.setAttribute('id','variants');
+              ip1.setAttribute('class','form-control');
+              ip1.setAttribute('placeholder','variants');
+
+            
+            div.appendChild(ip);
+            div_var.appendChild(ip1);
+            innerdiv.appendChild(div);
+            innerdiv.appendChild(div_var);
+            outerdiv.appendChild(innerdiv);
+            outerdiv.appendChild(hor_line);
+
+            
+             ip.addEventListener('change',function(e){
+                 let vari=e.target.value;
+                 
+                 key.push(vari);
+             });
+
+
+             ip1.addEventListener('change',function(e){
+                 let varia=e.target.value;
+                 
+                 val.push(varia);
+             });
+             
+            if(cnt==0)
+                {
+                    let submit_div=document.createElement('div');
+                    submit_div.setAttribute('class','col-sm-10');
+                    form.appendChild(submit_div);
+                    let submit=document.createElement('button');
+                    submit.setAttribute('type','submit');
+                    submit.setAttribute('class','btn btn-primary sub');
+                    form.appendChild(submit_div);
+                    submit.innerHTML="Submit";
+                    submit_div.appendChild(submit);
+                }
+                cnt=1;   
+            }
+            
+            let new_val=[];
+           
+            function createarray(){
+                
+                event.preventDefault();
+                for(let i=0;i<val.length;i++)
+                {
+                    new_val[i]=val[i].split(" ");
+                }
+                for(let i=0;i<key.length;i++){
+                    let obj={};
+                    obj["type"]=key[i];
+                    obj["values"]=new_val[i];
+                    varients.push(obj);
+                } 
+                console.log(varients);
+                fin=cartesian.apply([],new_val);         
+                function cartesian() {
+                    var r = [], arg = arguments, max = arg.length-1;
+                        function helper(arr, i) {
+                             for (var j=0, l=arg[i].length; j<l; j++) {
+                                var a = arr.slice(0); // clone arr
+                                 a.push(arg[i][j]);
+                                if (i==max)
+                                 r.push(a);
+                                else
+                                 helper(a, i+1);
+                            }
+                         }
+                         helper([], 0);
+                         return r;
+                }
+                for(let i=0;i<fin.length;i++){
+                    let obj={};
+                    for(let j=0;j<key.length;j++)
+                    {
+                    obj[key[j]]=fin[i][j];
+                    }
+                    varient_details.push(obj);
+
+                }
+                
+                let hor_line=document.createElement('hr');
+                hor_line.setAttribute('class','horLine');
+                let div_2=document.createElement('div');
+                div_2.id="div_2";
+                document.body.appendChild(div_2);
+                let div_cont=document.createElement('div');
+                div_cont.id="div_cont";
+                fin.forEach((e,index)=>{
+                let div_row=document.createElement('div');
+                div_row.id="div_row";
+                let div_col=document.createElement('div');
+                div_col.id="div_col";
+                let lim=e.length-1;
+                e.forEach((elem,i)=>{
+                 if(i<lim){
+                      div_col.innerHTML+=elem+" / ";
+                 }
+                 else{
+                      div_col.innerHTML+=elem;
+                   }
+                })
+                div_2.appendChild(div_cont);
+                div_cont.appendChild(div_row);
+                div_row.appendChild(div_col);
+                
+
+                let cost_var=document.createElement('div');
+                cost_var.setAttribute('class','col-2 cost_col');
+                let cost_ip1=document.createElement('input');
+                cost_ip1.setAttribute('type','number');
+                cost_ip1.setAttribute('id','cost'+index);
+                cost_ip1.setAttribute('class','form-control');
+                cost_ip1.setAttribute('placeholder','Add on value');
+                div_row.appendChild(cost_var);
+                cost_var.appendChild(cost_ip1);
+            })
+
+            let update_div=document.createElement('div');
+                    update_div.setAttribute('class','col-sm-10');
+                    div_cont.appendChild(update_div);
+                    let update=document.createElement('button');
+                    update.setAttribute('type','submit');
+                    update.setAttribute('onclick',"update_var_details()")
+                    update.setAttribute('class','btn btn-primary upd');
+                    update_div.appendChild(update);
+                    update.innerHTML="Update varient details";               
+}
+function update_var_details(){
+    for(let i=0;i<varient_details.length;i++)
+    {
+    varient_details[i]["addonvalue"]=document.getElementById("cost"+i).value;
+    }
+    console.log(varient_details);
+}
+
+    </script>
+</body>
+</html>
