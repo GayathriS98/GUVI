@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .circle{
+            height: 50px;
+            width:50px;
+            border-radius: 25px;
+            margin-right: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: peachpuff;
+        }
+        .input{
+            border-radius: 25px;
+            
+            width: 15px;
+            background-color: peachpuff;
+            border:none;
+
+            color: black; font-size: 18px; font-family: arial; font-weight: bold;
+
+        }
+        .div{
+            display: flex;
+            justify-content: center;
+            margin-left: 50px;
+            padding-top: 30px;
+        }
+        .maindiv{
+            padding-top: 100px;
+            display: flex;
+            justify-content: center;
+            
+        }
+        .card{
+            width: 480px;
+    height: 370px;
+    padding-top: 12px;
+    padding-right: 10px;
+
+    box-shadow: -1px 0px 12px -4px rgba(2,10,9,1);
+        }
+        #final{
+            color: black; font-size: 18px; font-family: arial; font-weight: bold;  
+        }
+        
+
+        
+    </style>
+</head>
+<body>
+    <script>
+        //generating random num
+        let a;
+        function rec()
+        {
+        let rand=Math.floor(Math.random()*9999);
+
+       if(rand>1111 && rand<9999){
+        a=rand.toString().split("");
+        for(let i=0;i<a.length-1;i++){
+                if(a[i]==="0"||a[a.length-1]==="0")
+                {
+                    rec();
+                }
+            for(let j=i+1;j<a.length;j++){
+                if(a[i]==a[j])
+                {
+                    rec();
+                }
+            }
+        }
+    }
+    }
+    rec();
+
+let r,c;
+let final=[];
+let cnt=1;
+//creating ui of card
+    let maindiv=document.createElement('div');//maindiv
+    maindiv.setAttribute('class','maindiv');
+
+    
+
+    let card=document.createElement('div');//inserting card inside main din
+    card.setAttribute('class','card');
+    document.body.appendChild(maindiv);
+    maindiv.appendChild(card);
+    let cnt2=1;
+for(r=0;r<4;r++)//creating individual circles and appending them inside a div which is appended inside card
+{
+    let div1=document.createElement('div');
+    div1.setAttribute('class','div');
+    div1.setAttribute('id','div'+r);
+   
+    card.appendChild(div1);
+    for(c=0;c<4;c++)
+    {
+        let divin=document.createElement('div');
+        let circle=document.createElement('div');
+        circle.setAttribute('class','circle')
+        circle.setAttribute('id','circle'+cnt);
+
+        let input=document.createElement('input');
+        //input.setAttribute('readonly','readonly');
+        input.setAttribute('class','input');
+        input.setAttribute('id','input'+cnt);
+        input.setAttribute('name','in'+cnt);
+        input.setAttribute('onkeyup',"keydownfunction()");
+        input.setAttribute('maxlength','1');
+        
+        let para=document.createElement('p');
+        para.setAttribute('class','p');
+        para.setAttribute('id','p'+cnt);
+       
+
+        function keydownfunction(){
+            console.log(final)
+            let x=document.getElementById("input"+cnt2).value;
+            console.log(x);
+            for(let i=0;i<a.length;i++){
+                if(x==a[i] && (cnt2-1) %4 ==i){
+                    // console.log("yes")
+                    final[i]=1;
+                    document.getElementById("circle"+cnt2).setAttribute('style','background-color:green');
+                    break;
+                    
+                }
+                else if(x==a[i] && (cnt2-1)%4 !==i){
+                    // console.log("partial")
+                    document.getElementById("circle"+cnt2).setAttribute('style','background-color:orange');
+                    break;
+                    
+                }
+                else if(x!==a[i]){
+                    // console.log("no")
+                    document.getElementById("circle"+cnt2).setAttribute('style','background-color:red');
+                    
+                }
+            }
+            keyupfunction(x,cnt2);
+            cnt2++;
+            }
+            div1.appendChild(divin);
+        divin.appendChild(circle);
+        circle.appendChild(input);
+        input.appendChild(para);
+          cnt++; 
+        }
+        function keyupfunction(x,cnt2)
+        {
+            document.getElementById("input"+cnt2).parentNode.removeChild(document.getElementById("input"+cnt2));
+            document.getElementById("circle"+cnt2).innerHTML=x;
+
+        }
+    }
+    
+    
+    </script>
+</body>
+</html>
